@@ -2,20 +2,26 @@ version: '2'
 
 services:
   bpmwildfly:
-    build: ./camunda-bpm-wildfly-ee
+    build:
+      context: ./camunda-bpm-wildfly-ee
+      args:
+        - MANAGEMENT_USERNAME=demo
+        - MANAGEMENT_PASSWORD=demo
+
     ports:
       - "8080:8080"
-      #- "9990:9990"
+      - "9990:9990"
     depends_on:
       - bpmdb
     networks:
       - bpm
     environment:
-      - WAIT_FOR=bpmdb:5432
       - DB_DRIVER=postgresql
+      - WAIT_FOR=bpmdb:5432
       - DB_URL=jdbc:postgresql://bpmdb:5432/camunda
       - DB_USERNAME=camunda
       - DB_PASSWORD=camunda
+
   bpmdb:
     build: ./postgres-camunda-bpm-ee
     ports:
@@ -26,6 +32,7 @@ services:
       - POSTGRES_PASSWORD=camunda
     networks:
       - bpm
+
   docker_compose_ui:
     image: francescou/docker-compose-ui:1.3.0
     container_name: docker_compose_ui
@@ -38,6 +45,7 @@ services:
         - .:/opt/docker-compose-projects/camunda-bpm-platform-ee
     networks:
       - tools
+
 networks:
   bpm:
   tools:
