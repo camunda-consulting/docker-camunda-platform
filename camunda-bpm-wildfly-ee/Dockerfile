@@ -4,6 +4,9 @@ FROM camunda/camunda-bpm-platform:wildfly-latest
 # no suffix '-ee' in CAMUNDA_VERSION!
 ENV CAMUNDA_VERSION 7.6.2
 
+ARG MANAGEMENT_USERNAME
+ARG MANAGEMENT_PASSWORD
+
 # remove Community Edition
 RUN rm -rf /camunda
 
@@ -16,6 +19,7 @@ RUN export $(cat camunda-enterprise-login.env | xargs) && \
     tar xzf - --directory /camunda/ server/${SERVER} --strip 2
 
 # remove H2 Console, when H2 is not used
+
 RUN if [ "$DB_DRIVER" != "h2" ]; then rm /camunda/standalone/deployments/camunda-h2-webapp-${CAMUNDA_VERSION}-ee.war; fi
 
 # remove example process application
@@ -34,6 +38,10 @@ RUN rm camunda-enterprise-login.env
 
 # disable automatic DB schema creation/updates
 RUN sed -i 's#<property name="isAutoSchemaUpdate">true</property>#<property name="isAutoSchemaUpdate">false</property>#' /camunda/standalone/configuration/standalone.xml
+
+# Add management user to access Management Web Console and to allow deployment with wilfly-maven-plugin
+
+RUN if [ "$MANAGEMENT_USERNAME" != "" ]; then ./bin/add-user.sh $MANAGEMENT_USERNAME $MANAGEMENT_PASSWORD; fi
 
 # add script to wait for database startup
 COPY wait-for-connection.sh /usr/local/bin/
