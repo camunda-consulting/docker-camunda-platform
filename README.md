@@ -3,8 +3,8 @@
 ## Folder Structure
 Folder/File | Description
 ---|---
-./camunda-ee-postgresql | Docker image for PostreSQL incl. Camunda tables
-./camunda-cockpit | Docker image for Camunda BPM EE Wildfly distro primarily for accessing Tasklist and Cockpit
+./camunda-bpm-wildfly-ee | Docker image for Camunda BPM EE Wildfly distro primarily for accessing Tasklist and Cockpit
+./postgres-camunda-bpm-ee | Docker image for PostreSQL incl. Camunda tables
 docker-compose.yml | Docker composition that wires all services together
 
 ## Running
