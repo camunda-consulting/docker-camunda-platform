@@ -16,3 +16,4 @@ docker-compose.yml | Docker composition that wires all services together
 ## URLs
 - [Camunda Cockpit](http://localhost:8080/camunda/app/cockpit/default/) (username: demo, password: demo)
 - [Docker Compose UI](http://localhost:5000/)
+- jdbc:postgresql://localhost:5432/camunda (username: camunda, password: camunda)
