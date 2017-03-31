@@ -25,9 +25,6 @@ RUN if [ "$DB_DRIVER" != "h2" ]; then rm /camunda/standalone/deployments/camunda
 # remove example process application
 #RUN rm /camunda/standalone/deployments/camunda-example-invoice-${CAMUNDA_VERSION}-ee.war
 
-# workaround for https://github.com/camunda/docker-camunda-bpm-platform/issues/34
-RUN sed -i 's/master/7.6.0/' /usr/local/bin/download-database-drivers.sh
-
 # re-add database drivers
 RUN export $(cat camunda-enterprise-login.env | xargs) && \
     export GITHUB="https://raw.githubusercontent.com/camunda/camunda-bpm-platform/7.6.0" && \
