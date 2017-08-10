@@ -1,6 +1,7 @@
-FROM tomcat:alpine
+FROM tomcat:8.0-jre8-alpine
+# Currently, Camunda BPM is supported on Tomcat 8.0.x
+# See also: https://docs.camunda.org/manual/latest/introduction/supported-environments/
 
-# no suffix '-ee' in CAMUNDA_VERSION!
 ENV CAMUNDA_VERSION 7.6.2
 ENV DISTRO tomcat
 
