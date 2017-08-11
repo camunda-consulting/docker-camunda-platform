@@ -1,0 +1,15 @@
+TOMCAT_USER=admin
+TOMCAT_PASS=admin
+
+DB_USERNAME=user
+DB_PASSWORD=password
+DB_DRIVER=com.mysql.jdbc.Driver
+DB_URL=jdbc:mysql://db:3306/camunda
+
+
+JNDI_NAME=jdbc/ProcessEngine
+MYSQL_HOST=db
+MYSQL_PORT=3306
+MYSQL_DATABASE=camunda
+MYSQL_USER=user
+MYSQL_PASSWORD=password
