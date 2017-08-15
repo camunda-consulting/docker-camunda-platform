@@ -72,7 +72,9 @@ RUN wget -O - --no-verbose \
     | /bin/sh \
       "${NEXUS}?r=camunda-bpm${EE}&g=org.camunda.bpm&a=camunda-database-settings&v=${VERSION}${EE}&p=pom --user=${EE_USERNAME} --password=${EE_PASSWORD}"
 
-# add datasource configuration script from CE Docker image
+# add datasource configuration script from CE Docker image,
+# customize it to run with the Tomcat base image,
+# and remove H2 stuff when not needed
 RUN wget -O - --no-verbose \
       "${GITHUB}/${DISTRO}-$(echo $VERSION | cut -c 1-3).0/bin/configure-and-run.sh" \
     | head -n -1 \
@@ -81,7 +83,7 @@ RUN wget -O - --no-verbose \
     echo -e "\n\
 # remove H2 webapp when not needed\n\
 if [ \$DB_DRIVER != \"org.h2.Driver\" ]; then\n\
-  rm -r \${CATALINA_HOME}/webapps/h2;\n\
+  rm -r \${CATALINA_HOME}/webapps/h2 ${LIB_DIR}/h2-*.jar;\n\
 fi\n\
 \n\
 exec catalina.sh run" \
