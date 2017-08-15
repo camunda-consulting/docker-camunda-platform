@@ -76,6 +76,7 @@ RUN wget -O - --no-verbose \
 RUN wget -O - --no-verbose \
       "${GITHUB}/${DISTRO}-$(echo $VERSION | cut -c 1-3).0/bin/configure-and-run.sh" \
     | head -n -1 \
+    > /usr/local/bin/configure-and-run.sh \
     && \
     echo -e "\n\
 # remove H2 webapp when not needed\n\
@@ -84,8 +85,8 @@ if [ \$DB_DRIVER != \"org.h2.Driver\" ]; then\n\
 fi\n\
 \n\
 exec catalina.sh run" \
-    > /usr/local/bin/configure-and-run.sh
-
+    >> /usr/local/bin/configure-and-run.sh \
+	&& chmod +x /usr/local/bin/configure-and-run.sh
 
 # Configures a JDBC DataSource (https://docs.camunda.org/manual/latest/installation/full/tomcat/manual/#configure-a-jdbc-resource)
 # based on environment variables DB_DRIVER, DB_URL, DB_USERNAME, DB_PASSWORD
