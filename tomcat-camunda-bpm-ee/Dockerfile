@@ -21,7 +21,7 @@ ARG EE_PASSWORD
 
 # Set the desired Camunda BPM version here.
 # no suffix '-ee' in VERSION, but in EE variable!
-ENV VERSION 7.7.3
+ENV VERSION 7.7.4
 # leave EE empty for Community Edition
 ENV EE -ee
 
@@ -69,7 +69,7 @@ RUN mkdir "/camunda-bpm-distro/" && \
 # add database drivers with script from CE Docker image
 RUN wget -O - --no-verbose \
       "${GITHUB}/${DISTRO}-$(echo $VERSION | cut -c 1-3).0/bin/download-database-drivers.sh" \
-    | /bin/sh \
+    | bash -s \
       "${NEXUS}?r=camunda-bpm${EE}&g=org.camunda.bpm&a=camunda-database-settings&v=${VERSION}${EE}&p=pom --user=${EE_USERNAME} --password=${EE_PASSWORD}"
 
 # add datasource configuration script from CE Docker image,
