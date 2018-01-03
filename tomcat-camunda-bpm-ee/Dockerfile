@@ -21,12 +21,12 @@ ARG EE_PASSWORD
 
 # Set the desired Camunda BPM version here.
 # no suffix '-ee' in VERSION, but in EE variable!
-ENV VERSION 7.7.4
+ENV VERSION 7.8.0
 # leave EE empty for Community Edition
 ENV EE -ee
 
 ENV DISTRO tomcat
-ENV SERVER apache-tomcat-8.0.24
+ENV SERVER apache-tomcat-8.0.47
 ENV LIB_DIR ${CATALINA_HOME}/lib
 ENV SERVER_CONFIG ${CATALINA_HOME}/conf/server.xml
 ENV NEXUS https://app.camunda.com/nexus/service/local/artifact/maven/redirect
@@ -68,7 +68,7 @@ RUN mkdir "/camunda-bpm-distro/" && \
 
 # add database drivers with script from CE Docker image
 RUN wget -O - --no-verbose \
-      "${GITHUB}/${DISTRO}-$(echo $VERSION | cut -c 1-3).0/bin/download-database-drivers.sh" \
+      "${GITHUB}/master/bin/download-database-drivers.sh" \
     | bash -s \
       "${NEXUS}?r=camunda-bpm${EE}&g=org.camunda.bpm&a=camunda-database-settings&v=${VERSION}${EE}&p=pom --user=${EE_USERNAME} --password=${EE_PASSWORD}"
 
@@ -76,7 +76,7 @@ RUN wget -O - --no-verbose \
 # customize it to run with the Tomcat base image,
 # and remove H2 stuff when not needed
 RUN wget -O - --no-verbose \
-      "${GITHUB}/${DISTRO}-$(echo $VERSION | cut -c 1-3).0/bin/configure-and-run.sh" \
+      "${GITHUB}/master/bin/configure-and-run.sh" \
     | head -n -1 \
     > /usr/local/bin/configure-and-run.sh \
     && \
