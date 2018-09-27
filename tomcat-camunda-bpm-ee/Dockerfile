@@ -10,21 +10,21 @@ FROM tomcat:9-jre8-alpine
 
 # When updating to a new Tomcat version, check the diff of the server.xml
 # that shipps with the Camunda distro and the one shipped with Tomcat, e.g.
-# $ docker run tomcat:8.0-jre8-alpine cat /usr/local/tomcat/conf/server.xml > server.orig-tomcat-8.0.45.xml
-# $ tar xzOf camunda-bpm-ee-tomcat-7.7.2-ee.tar.gz server/apache-tomcat-8.0.24/conf/server.xml > server.orig-camunda-7.7.2-ee-tomcat-8.0.24.xml
-# $ diff server.orig-camunda-7.7.2-ee-tomcat-8.0.24.xml server.orig-tomcat-8.0.45.xml
+# $ docker run tomcat:9-jre8-alpine cat /usr/local/tomcat/conf/server.xml > server.orig-tomcat-9.xml
+# $ tar xzOf camunda-bpm-ee-tomcat-7.9.2-ee.tar.gz server/apache-tomcat-9.0.5/conf/server.xml > server.orig-camunda-7.9.2-ee-tomcat-9.xml
+# $ diff server.orig-camunda-7.9.2-ee-tomcat-9.xml server.orig-tomcat-9.xml
 
 ARG EE_USERNAME
 ARG EE_PASSWORD
 
 # Set the desired Camunda BPM version here.
 # no suffix '-ee' in VERSION, but in EE variable!
-ENV VERSION 7.8.0
+ENV VERSION 7.9.2
 # leave EE empty for Community Edition
 ENV EE -ee
 
 ENV DISTRO tomcat
-ENV SERVER apache-tomcat-8.0.47
+ENV SERVER apache-tomcat-9.0.5
 ENV LIB_DIR ${CATALINA_HOME}/lib
 ENV SERVER_CONFIG ${CATALINA_HOME}/conf/server.xml
 ENV NEXUS https://app.camunda.com/nexus/service/local/artifact/maven/redirect
