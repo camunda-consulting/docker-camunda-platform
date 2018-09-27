@@ -1,14 +1,12 @@
 # Docker Image for Camunda BPM Enterprise Edition as a shared engine
-# inside the latest version of Apache Tomcat 8.0.x
+# inside the latest version of Apache Tomcat 9
 
 # It basically follows Camunda's guide on how to
 # "Install the Full Distribution on a Tomcat Application Server manually":
 # https://docs.camunda.org/manual/latest/installation/full/tomcat/manual/
 
-# Currently, Camunda BPM is supported on Tomcat 8.0.x
-# See also: https://docs.camunda.org/manual/latest/introduction/supported-environments/
-FROM tomcat:8.0-jre8-alpine
-# src: https://github.com/docker-library/tomcat/blob/master/8.0/jre8-alpine/Dockerfile
+FROM tomcat:9-jre8-alpine
+# src: https://github.com/docker-library/tomcat/blob/master/9.0/jre8-alpine/Dockerfile
 
 # When updating to a new Tomcat version, check the diff of the server.xml
 # that shipps with the Camunda distro and the one shipped with Tomcat, e.g.

@@ -1,8 +1,8 @@
-FROM camunda/camunda-bpm-platform:wildfly-latest
+FROM camunda/camunda-bpm-platform:wildfly-7.8.0
 # inherit shell scripts from Community Edition image
 
 # no suffix '-ee' in CAMUNDA_VERSION!
-ENV CAMUNDA_VERSION 7.6.2
+ENV CAMUNDA_VERSION 7.8.6
 
 ARG MANAGEMENT_USERNAME
 ARG MANAGEMENT_PASSWORD
