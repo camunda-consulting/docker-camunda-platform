@@ -1,4 +1,4 @@
-# Camunda BPM EE Docker image
+# Example Docker Image: Camunda BPM on Wildfly and PostreSQL
 
 ## Folder Structure
 Folder/File | Description
