@@ -1,6 +1,6 @@
 # Example Dockerfile for Camunda on Tomcat
 
-This docker image is based on the official Docker image for the Camunda Enterprise Edition and hardens it for production use by removing examples and enabling security features.
+This [Dockerfile](Dockerfile) is based on the official Docker image for the Camunda Enterprise Edition and hardens it for production use by removing examples and enabling security features.
 
 ![Docker Tomcat Camunda BPM](docker-tomcat-camunda-bpm.png)
 
