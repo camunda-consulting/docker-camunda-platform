@@ -1,30 +1,23 @@
-Camunda BPM EE Docker PostgreSQL
-================================
+# Camunda BPM EE Docker PostgreSQL
 
 PostgreSQL Docker image for Camunda BPM Enterprise Edition based on the [official PostgreSQL image][postgres].
 
-# Configuration
+## Configuration
 
-  1. Put your EE credentials into [camunda-enterprise-login.env](camunda-enterprise-login.env).
-  2. Put your EE license into [camunda-enterprise-license.sql](camunda-enterprise-license.sql).
+Put your EE license into [camunda-enterprise-license.sql](camunda-enterprise-license.sql).
 
-# Additional Packages
+## PostgresSQL User
 
-  - wget
-  - ca-certificates
+- `postgres` without password
+- `camunda` with password `camunda`
 
-# PostgresSQL User
+## Database
 
-  - `postgres` without password
-  - `camunda` with password `camunda`
+- `camunda`
 
-# Database
+## Usage (local)
 
-  - `camunda`
-
-# Usage (local)
-
-```
+```bash
 # Start docker container
 docker run -d -p 5432:5432 camunda-ee-postgresql
 ```
