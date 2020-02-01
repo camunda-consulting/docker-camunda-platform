@@ -1,4 +1,6 @@
-# Example Dockerfiles for Camunda
+# Example Dockerfiles for Camunda Enterprise Edition
+
+see also: https://docs.camunda.org/manual/latest/installation/docker/
 
 ## Folder Structure
 
