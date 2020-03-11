@@ -33,15 +33,6 @@ RUN rm -fr /camunda/webapps/ROOT \
     --insert "//Resource[@name='jdbc/ProcessEngine']" --type attr \
     -n validationQuery -v "SELECT 1" \
     /camunda/conf/server.xml && \
-# disable JDBC batching since it doesn't work on old Oracle version and maybe PostgreSQL
-# see: https://github.com/camunda/docker-camunda-bpm-platform/issues/80
-# see: https://docs.camunda.org/manual/latest/user-guide/process-engine/database/#jdbc-batch-processing
-# <property name="jdbcBatchProcessing">false</property>
-    xmlstarlet edit --ps --inplace \
-    -N 'N=http://www.camunda.org/schema/1.0/BpmPlatform' \
-    --subnode '//N:properties' -t elem -n property -v "false" \
-    --insert '$prev' -t 'attr' -n 'name' -v 'jdbcBatchProcessing' \
-    /camunda/conf/bpm-platform.xml && \
 # Enable HTTP Basic Authentication for Camunda REST API
 # see: https://docs.camunda.org/manual/latest/user-guide/security/
    sed -i -e 's#<!-- <filter>#<filter>#' -e 's#</filter-mapping> -->#</filter-mapping>#' \
